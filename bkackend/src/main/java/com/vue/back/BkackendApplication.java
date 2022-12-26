@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("back")
+@ComponentScan("com.vue.back")
 public class BkackendApplication {
 
 	public static void main(String[] args) {
