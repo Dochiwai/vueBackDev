@@ -1,6 +1,7 @@
 package com.vue.back.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,22 @@ public class UserController {
 	public JSONObject Login(
 			HttpServletRequest request,
 			@RequestBody UserDto dto
-			) {
-		
-		// 아이디 비번 받았고
-		// 받지않았으면 400 에러
-		
-		// 서비스로 이동
-		
-		// 유저를 받았으면 세션에 저장 후
-		
-		// 받지않았으면 result 500 으로 해서 return 
-		
-		//질문?
+			) throws Exception {
+		log.info(">>>login Check 1");
 		JSONObject result = new JSONObject();
-		result.put("result", 200);
+		if(dto.getEmail() == null || dto.getEmail().equals("") && 
+				dto.getPw() == null || dto.getPw().equals("")) {
+			result.put("result", 400);
+		}else {
+			UserDto user = userService.isUser(dto);
+			if(user != null) {
+				HttpSession httpSession = request.getSession(); 
+				httpSession.setAttribute("user", user);
+				result.put("result", 200);			
+			}else {
+				result.put("result", 500);
+			}
+		}
 		
 		return result;
 	}

@@ -8,6 +8,27 @@
   	where email = #{email}
   </select>
   
+  <select id="getUserByUserDto" parameterType="com.vue.back.dto.UserDto" resultType="com.vue.back.dto.UserDto">
+  	SELECT 
+  		uid,
+  		email,
+  		pw,
+  		name,
+  		phone,
+  		created_at as createdAt,
+  		updated_at as updatedAt,
+  		status,
+  		email_check as emailCheck
+  	FROM
+  		user
+  	WHERE
+  		email = #{email}
+  	AND
+  		pw = #{pw}
+  	AND
+  		status = 0 AND email_check = 0
+  </select>
+  
   <insert id="signUpUser">
   	INSERT INTO user(email, pw, name, phone)
   	VALUES(#{email}, #{pw}, #{name}, #{phone})

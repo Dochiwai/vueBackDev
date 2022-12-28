@@ -43,6 +43,20 @@ public class UserServiceImpl implements UserService {
 		userMapper.signUpUser(user);
 		return true;
 	}
+
+
+	@Override
+	public UserDto isUser(UserDto dto) throws Exception {
+		log.info(">>> login check2");
+		
+		AES256 aes256 = new AES256();
+		dto.setPw(aes256.encrypt(dto.getPw()));
+		
+		UserDto user = userMapper.getUserByUserDto(dto);
+		
+		
+		return user;
+	}
 	
 	// 받은 비밀번호 암호화 하고
 	// 매퍼로 전달 

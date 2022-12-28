@@ -6,4 +6,6 @@ public interface UserService {
 
 	boolean signUp(UserDto user) throws Exception;
 
+	UserDto isUser(UserDto dto) throws Exception;
+
 }

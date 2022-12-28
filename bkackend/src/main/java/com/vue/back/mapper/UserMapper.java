@@ -11,4 +11,6 @@ public interface UserMapper {
 
 	void signUpUser(UserDto user);
 
+	UserDto getUserByUserDto(UserDto dto);
+
 }
