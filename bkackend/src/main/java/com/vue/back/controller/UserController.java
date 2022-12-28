@@ -58,4 +58,15 @@ public class UserController {
 		
 		return result;
 	}
+	
+	@PostMapping(value = "/api/logout")
+	public JSONObject logout(HttpServletRequest request) {
+		log.info(">>>logout check 1");
+		JSONObject result = new JSONObject();
+		request.getSession().removeAttribute("user");
+		result.put("result", 200);
+		
+		return result;
+		
+	}
 }
