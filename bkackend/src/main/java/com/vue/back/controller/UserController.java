@@ -26,7 +26,6 @@ public class UserController {
 		JSONObject result = new JSONObject();
 		result.put("result", 200);
 		
-		System.out.println(result.toString());
 		return result;
 	}
 	
