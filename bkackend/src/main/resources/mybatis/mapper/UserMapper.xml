@@ -2,5 +2,15 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vue.back.mapper.UserMapper">
   
+  <!-- user 테이블에서 이메일과 암호화한 비밀번호가 맞는 유저 데이터를 받음 -->
+  <select id="getUser" resultType="com.vue.back.dto.UserDto">
+  	SELECT * FROM user
+  	where email = #{email}
+  </select>
+  
+  <insert id="signUpUser">
+  	INSERT INTO user(email, pw, name, phone)
+  	VALUES(#{email}, #{pw}, #{name}, #{phone})
+  </insert>
   
 </mapper>
