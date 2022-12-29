@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vue.back.dto.BoardCategoryDto;
@@ -70,5 +71,22 @@ public class BoardController {
 			result.put("result", 500);
 		}
 		return result;
+	}
+	
+	@PostMapping(value="/api/boardView/")
+	public JSONObject boardDetail(@RequestParam("uid") long uid) {
+		BoardDto boardDto = boardService.getDetail(uid);
+		JSONObject result = new JSONObject();
+		log.info(boardDto.toString());
+		
+		if(boardDto != null) {
+			result.put("board", boardDto);
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
+			
+		return result;
+		
 	}
 }

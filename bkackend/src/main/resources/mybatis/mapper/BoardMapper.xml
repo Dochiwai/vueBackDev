@@ -49,4 +49,22 @@
    		now()
    		)
   </insert>
+  
+  <select id="getBoardDetail" resultType="com.vue.back.dto.BoardDto">	
+   	SELECT
+   		uid,
+   		title,
+   		content,
+   		created_user,
+   		created_at,
+ 		view_cnt,
+		good_cnt,
+		not_good_cnt
+ 	FROM
+ 		board
+ 	WHERE
+ 		uid = #{uid}
+  </select>
+  
+  
 </mapper>
