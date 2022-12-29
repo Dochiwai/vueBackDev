@@ -16,4 +16,21 @@
  	ASC
   </select>
   
+  <insert id="insertBoard" parameterType="com.vue.back.dto.BoardDto">
+  <!-- 그럼 이제 넣기만해면 댐 끝 -->
+  	INSERT INTO board(
+  		title,
+  		category,
+  		content,
+  		created_user,
+  		created_at
+  		)
+   	VALUES(
+   		#{title},
+   		#{category},
+   		#{content},
+   		#{created_user},
+   		now()
+   		)
+  </insert>
 </mapper>
