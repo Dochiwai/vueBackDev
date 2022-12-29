@@ -1,5 +1,6 @@
 package com.vue.back.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,25 @@ public class BoardController {
 		JSONObject result = new JSONObject();
 		if(isOK > 0) {
 			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
+		return result;
+	}
+	
+	@PostMapping(value="/api/boardList")
+	public JSONObject boardList() {
+		log.info(">>>> boardList check 1");
+		List<BoardDto> list = boardService.getList();
+		
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(0).toString());
+		}
+		
+		JSONObject result = new JSONObject();
+		if(list.size() > 0) {
+			result.put("boardList", list);
+			result.put("result", 200);			
 		}else {
 			result.put("result", 500);
 		}

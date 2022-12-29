@@ -16,6 +16,22 @@
  	ASC
   </select>
   
+  <select id="getBoardList" resultType="com.vue.back.dto.BoardDto">
+    SELECT
+    	uid,
+    	title,
+    	created_user,
+    	view_cnt,
+    	created_at
+    FROM
+    	board
+    WHERE
+    	is_del = 0
+    ORDER BY
+    	UID
+    ASC
+  </select>
+  
   <insert id="insertBoard" parameterType="com.vue.back.dto.BoardDto">
   <!-- 그럼 이제 넣기만해면 댐 끝 -->
   	INSERT INTO board(

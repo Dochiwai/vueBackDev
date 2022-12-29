@@ -14,4 +14,6 @@ public interface BoardMapper {
 
 	public int insertBoard(BoardDto boardDto);
 
+	public List<BoardDto> getBoardList();
+
 }
