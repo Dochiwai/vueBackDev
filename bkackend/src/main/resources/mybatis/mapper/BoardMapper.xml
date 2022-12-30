@@ -50,7 +50,7 @@
    		)
   </insert>
   
-  <select id="getBoardDetail" resultType="com.vue.back.dto.BoardDto">	
+  <select id="getBoardDetail" parameterType="String" resultType="com.vue.back.dto.BoardDto">	
    	SELECT
    		uid,
    		title,

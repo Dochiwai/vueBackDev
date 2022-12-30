@@ -13,6 +13,6 @@ public interface BoardService {
 
 	List<BoardDto> getList();
 
-	BoardDto getDetail(long uid);
+	BoardDto getDetail(String uid);
 
 }

@@ -75,7 +75,8 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/api/boardView/{uid}")
-	public JSONObject boardDetail(@PathVariable("uid") long uid) {
+	public JSONObject boardDetail(@PathVariable("uid") String uid) {
+		System.out.println("uid >> " + uid);
 		BoardDto boardDto = boardService.getDetail(uid);
 		JSONObject result = new JSONObject();
 		log.info(boardDto.toString());

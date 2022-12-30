@@ -37,7 +37,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardDto getDetail(long uid) {
+	public BoardDto getDetail(String uid) {
 		log.info(">>>BoardDetail check 2");
 		return boardMapper.getBoardDetail(uid);
 	}

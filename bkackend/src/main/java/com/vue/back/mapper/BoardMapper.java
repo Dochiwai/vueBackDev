@@ -16,6 +16,6 @@ public interface BoardMapper {
 
 	public List<BoardDto> getBoardList();
 
-	public BoardDto getBoardDetail(long uid);
+	public BoardDto getBoardDetail(String uid);
 
 }
