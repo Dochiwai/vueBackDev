@@ -57,9 +57,7 @@
    		content,
    		created_user,
    		created_at,
- 		view_cnt,
-		good_cnt,
-		not_good_cnt
+ 		view_cnt
  	FROM
  		board
  	WHERE
