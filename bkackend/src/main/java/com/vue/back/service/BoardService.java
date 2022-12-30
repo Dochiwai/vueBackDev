@@ -15,4 +15,6 @@ public interface BoardService {
 
 	BoardDto getDetail(String uid);
 
+	int updateGoodBoard(BoardDto boardDto);
+
 }

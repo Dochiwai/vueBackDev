@@ -18,4 +18,6 @@ public interface BoardMapper {
 
 	public BoardDto getBoardDetail(String uid);
 
+	public int updateGoodBoard(BoardDto boardDto);
+
 }

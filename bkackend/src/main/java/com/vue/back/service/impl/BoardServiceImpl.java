@@ -41,5 +41,11 @@ public class BoardServiceImpl implements BoardService {
 		log.info(">>>BoardDetail check 2");
 		return boardMapper.getBoardDetail(uid);
 	}
+
+	@Override
+	public int updateGoodBoard(BoardDto boardDto) {
+		log.info(">>>BoardGood check 2");
+		return boardMapper.updateGoodBoard(boardDto);
+	}
 	
 }

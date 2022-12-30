@@ -90,4 +90,20 @@ public class BoardController {
 			
 		return result;
 	}
+	
+	@PostMapping(value="/api/board/{uid}/good")
+	public JSONObject boardDetailGood(@PathVariable("uid") long uid, @RequestBody BoardDto boardDto, HttpServletRequest request) {
+		log.info(">>>uid = " + uid);
+		log.info(">>>boardDto = " + boardDto);
+		int isOk = boardService.updateGoodBoard(boardDto);
+		
+		JSONObject result = new JSONObject();
+		if(isOk > 0) {
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
+		
+		return result;
+	}
 }
