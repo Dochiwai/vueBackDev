@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vue.back.dto.BoardCategoryDto;
+import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadDto;
 import com.vue.back.mapper.BoardMapper;
 import com.vue.back.service.BoardService;
 
@@ -20,7 +21,7 @@ public class BoardServiceImpl implements BoardService {
 	BoardMapper boardMapper;
 
 	@Override
-	public List<BoardCategoryDto> getBoardCategory() {
+	public List<BoardTypeDto> getBoardCategory() {
 		return boardMapper.getBoardCategory();
 	}
 
@@ -43,15 +44,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int updateGoodBoard(BoardDto boardDto) {
+	public int updateGoodBoard(BoardGoodBadDto boardGoodBadDto) {
 		log.info(">>>BoardGood check 2");
-		return boardMapper.updateGoodBoard(boardDto);
+		return boardMapper.updateGoodBoard(boardGoodBadDto);
 	}
 
 	@Override
-	public int updateBadBoard(BoardDto boardDto) {
+	public int updateBadBoard(BoardGoodBadDto boardGoodBadDto) {
 		log.info(">>>BoardBad check 2");
-		return boardMapper.updateBadBoard(boardDto);
+		return boardMapper.updateBadBoard(boardGoodBadDto);
 	}
+
+
 	
 }

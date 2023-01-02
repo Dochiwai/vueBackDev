@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class BoardCategoryDto {
+public class BoardTypeDto {
 
 	private int uid;
 	private String type;

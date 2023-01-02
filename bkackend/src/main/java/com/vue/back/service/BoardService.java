@@ -2,12 +2,13 @@ package com.vue.back.service;
 
 import java.util.List;
 
-import com.vue.back.dto.BoardCategoryDto;
+import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadDto;
 
 public interface BoardService {
 
-	List<BoardCategoryDto> getBoardCategory();
+	List<BoardTypeDto> getBoardCategory();
 
 	int insertBoard(BoardDto boardDto);
 
@@ -15,8 +16,8 @@ public interface BoardService {
 
 	BoardDto getDetail(long uid);
 
-	int updateGoodBoard(BoardDto boardDto);
+	int updateGoodBoard(BoardGoodBadDto boardGoodBadDto);
 
-	int updateBadBoard(BoardDto boardDto);
+	int updateBadBoard(BoardGoodBadDto boardGoodBadDto);
 
 }

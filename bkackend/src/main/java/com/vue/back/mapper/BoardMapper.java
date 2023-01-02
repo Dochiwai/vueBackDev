@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.vue.back.dto.BoardCategoryDto;
+import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadDto;
 
 @Mapper
 public interface BoardMapper {
 
-	public List<BoardCategoryDto> getBoardCategory();
+	public List<BoardTypeDto> getBoardCategory();
 
 	public int insertBoard(BoardDto boardDto);
 
@@ -18,8 +19,8 @@ public interface BoardMapper {
 
 	public BoardDto getBoardDetail(long uid);
 
-	public int updateGoodBoard(BoardDto boardDto);
+	public int updateGoodBoard(BoardGoodBadDto boardGoodBadDto);
 
-	public int updateBadBoard(BoardDto boardDto);
+	public int updateBadBoard(BoardGoodBadDto boardGoodBadDto);
 
 }

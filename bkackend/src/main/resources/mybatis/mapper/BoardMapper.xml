@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vue.back.mapper.BoardMapper">
 
-  <select id="getBoardCategory" resultType="com.vue.back.dto.BoardCategoryDto">
+  <select id="getBoardCategory" resultType="com.vue.back.dto.BoardTypeDto">
   	SELECT
   		uid,
   		type,
@@ -10,7 +10,7 @@
   		created_at as createdAt,
   		updated_at as updatedAt
   	FROM
-  		board_category
+  		board_type
   	ORDER BY
   		UID 
  	ASC
@@ -36,14 +36,14 @@
   <!-- 그럼 이제 넣기만해면 댐 끝 -->
   	INSERT INTO board(
   		title,
-  		category,
+  		type,
   		content,
   		created_user,
   		created_at
   		)
    	VALUES(
    		#{title},
-   		#{category},
+   		#{type},
    		#{content},
    		#{created_user},
    		now()
@@ -64,7 +64,7 @@
  		uid = #{uid}
   </select>
   
-  <insert id="updateGoodBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
+<insert id="updateGoodBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
   	INSERT INTO good_bad(
   		mother_uid,
   		created_user,
@@ -73,14 +73,14 @@
   		)
   	VALUES(
   		#{uid},
-  		created_user,
+  		#{created_user},
   		'G',
   		now()
   	)
   	ON DUPLICATE KEY UPDATE
-  		good_bad = 'G',
+  		good_bad = 'G'
   				
-  </insert>
+  </insert> 
   
   <insert id="updateBadBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
   	INSERT INTO good_bad(

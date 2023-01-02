@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class BoardDto {
 	private long uid;
-	private String category;
+	private String type;
 	private String title;
 	private String content;
 	private String created_user;
