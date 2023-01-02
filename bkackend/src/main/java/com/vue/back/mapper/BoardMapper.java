@@ -11,7 +11,7 @@ import com.vue.back.dto.BoardGoodBadDto;
 @Mapper
 public interface BoardMapper {
 
-	public List<BoardTypeDto> getBoardCategory();
+	public List<BoardTypeDto> getBoardType();
 
 	public int insertBoard(BoardDto boardDto);
 

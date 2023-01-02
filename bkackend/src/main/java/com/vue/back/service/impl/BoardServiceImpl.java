@@ -21,8 +21,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardMapper boardMapper;
 
 	@Override
-	public List<BoardTypeDto> getBoardCategory() {
-		return boardMapper.getBoardCategory();
+	public List<BoardTypeDto> getBoardType() {
+		return boardMapper.getBoardType();
 	}
 
 	@Override

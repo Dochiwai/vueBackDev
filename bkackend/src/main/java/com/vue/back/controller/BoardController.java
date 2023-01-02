@@ -26,10 +26,10 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-	@PostMapping(value = "/api/boardCategory")
-	public JSONObject boardCategory(HttpServletRequest request) {
+	@PostMapping(value = "/api/boardType")
+	public JSONObject boardType(HttpServletRequest request) {
 
-		List<BoardTypeDto> list = boardService.getBoardCategory();
+		List<BoardTypeDto> list = boardService.getBoardType();
 
 		JSONObject result = new JSONObject();
 		if (list.size() > 0) {

@@ -8,7 +8,7 @@ import com.vue.back.dto.BoardGoodBadDto;
 
 public interface BoardService {
 
-	List<BoardTypeDto> getBoardCategory();
+	List<BoardTypeDto> getBoardType();
 
 	int insertBoard(BoardDto boardDto);
 
