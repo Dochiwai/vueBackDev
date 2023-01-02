@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/api/boardView/{uid}")
-	public JSONObject boardDetail(@PathVariable("uid") String uid) {
+	public JSONObject boardDetail(@PathVariable("uid") long uid) {
 		System.out.println("uid >> " + uid);
 		BoardDto boardDto = boardService.getDetail(uid);
 		JSONObject result = new JSONObject();
@@ -92,10 +93,26 @@ public class BoardController {
 	}
 	
 	@PostMapping(value="/api/board/{uid}/good")
-	public JSONObject boardDetailGood(@PathVariable("uid") long uid, @RequestBody BoardDto boardDto, HttpServletRequest request) {
+	public JSONObject boardDetailGood(@PathVariable("uid") long uid , @RequestBody BoardDto boardDto, HttpServletRequest request) {
 		log.info(">>>uid = " + uid);
 		log.info(">>>boardDto = " + boardDto);
 		int isOk = boardService.updateGoodBoard(boardDto);
+		
+		JSONObject result = new JSONObject();
+		if(isOk > 0) {
+			HttpSession httpSession = request.getSession();
+			httpSession.setAttribute("email", isOk);
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
+		
+		return result;
+	}
+	
+	@PostMapping(value="/api/board/{uid}/bad")
+	public JSONObject boardDetailBad(@PathVariable("uid") long uid, @RequestBody BoardDto boardDto, HttpServletRequest request) {
+		int isOk = boardService.updateBadBoard(boardDto);
 		
 		JSONObject result = new JSONObject();
 		if(isOk > 0) {

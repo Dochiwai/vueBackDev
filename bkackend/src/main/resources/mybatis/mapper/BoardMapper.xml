@@ -50,7 +50,7 @@
    		)
   </insert>
   
-  <select id="getBoardDetail" parameterType="String" resultType="com.vue.back.dto.BoardDto">	
+  <select id="getBoardDetail" parameterType="long" resultType="com.vue.back.dto.BoardDto">	
    	SELECT
    		uid,
    		title,
@@ -65,22 +65,38 @@
   </select>
   
   <insert id="updateGoodBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
-  	INSERT INTO BoardGoodBadDto{
+  	INSERT INTO good_bad(
   		mother_uid,
   		created_user,
   		good_bad,
   		created_at
   		)
   	VALUES(
-  		#{mother_uid},
-  		#{created_user},
-  		G,
+  		#{uid},
+  		created_user,
+  		'G',
   		now()
   	)
   	ON DUPLICATE KEY UPDATE
-  		good_bad = G
-  	WHERE
-  		uid = #{uid}
+  		good_bad = 'G',
+  				
+  </insert>
+  
+  <insert id="updateBadBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
+  	INSERT INTO good_bad(
+  		mother_uid,
+  		created_user,
+  		good_bad,
+  		created_at
+  		)
+  	VALUES(
+  		#{uid},
+  		#{created_user},
+  		'B',
+  		now()
+  	)
+  	ON DUPLICATE KEY UPDATE
+  		good_bad = 'B'
   </insert>
   
   

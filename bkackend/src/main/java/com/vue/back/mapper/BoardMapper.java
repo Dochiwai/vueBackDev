@@ -16,8 +16,10 @@ public interface BoardMapper {
 
 	public List<BoardDto> getBoardList();
 
-	public BoardDto getBoardDetail(String uid);
+	public BoardDto getBoardDetail(long uid);
 
 	public int updateGoodBoard(BoardDto boardDto);
+
+	public int updateBadBoard(BoardDto boardDto);
 
 }

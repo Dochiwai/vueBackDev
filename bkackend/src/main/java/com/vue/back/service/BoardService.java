@@ -13,8 +13,10 @@ public interface BoardService {
 
 	List<BoardDto> getList();
 
-	BoardDto getDetail(String uid);
+	BoardDto getDetail(long uid);
 
 	int updateGoodBoard(BoardDto boardDto);
+
+	int updateBadBoard(BoardDto boardDto);
 
 }
