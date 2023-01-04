@@ -20,4 +20,6 @@ public interface BoardService {
 
 	int updateBadBoard(BoardGoodBadDto boardGoodBadDto);
 
+	BoardGoodBadDto getGoodBadBoard(long uid);
+
 }

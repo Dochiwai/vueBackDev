@@ -90,20 +90,22 @@ public class BoardController {
 	}
 
 	@PostMapping(value = "/api/board/{uid}/good")
-	public JSONObject boardDetailGood(@PathVariable("uid") long uid, @RequestBody BoardGoodBadDto boardGoodBadDto, HttpServletRequest request) {
+	public JSONObject boardDetailGood(@PathVariable("uid") long uid, @RequestBody BoardGoodBadDto boardGoodBadDto,
+			HttpServletRequest request) {
 		log.info(">>>uid = " + uid);
 		log.info(">>>boardDto = " + boardGoodBadDto.toString());
-		int isOk = boardService.updateGoodBoard(boardGoodBadDto);
+		BoardGoodBadDto selectOk = boardService.getGoodBadBoard(uid);
+		boolean selectG = selectOk.getGood_bad().equals("G");
 		JSONObject result = new JSONObject();
-		UserDto user = (UserDto)request.getSession().getAttribute("user");
-		String email = user.getEmail();
-		if (boardGoodBadDto.getCreated_user().equals(email) && boardGoodBadDto.getGood_bad() == "G" ) {
+		if (selectOk.getGood_bad().equals(selectG)) {
 			result.put("result", 400);
-		}
-		if (isOk > 0) {
-			result.put("result", 200);
 		} else {
-			result.put("result", 500);
+			int isOk = boardService.updateGoodBoard(boardGoodBadDto);
+			if (isOk > 0) {
+				result.put("result", 200);
+			} else {
+				result.put("result", 500);
+			}
 		}
 
 		return result;

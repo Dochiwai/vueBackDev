@@ -18,9 +18,13 @@ public interface BoardMapper {
 	public List<BoardDto> getBoardList();
 
 	public BoardDto getBoardDetail(long uid);
+	
+	public void readViewCnt(long uid);
 
 	public int updateGoodBoard(BoardGoodBadDto boardGoodBadDto);
 
 	public int updateBadBoard(BoardGoodBadDto boardGoodBadDto);
+
+	public BoardGoodBadDto getGoodBadBoard(long uid);
 
 }

@@ -19,6 +19,7 @@
   <select id="getBoardList" resultType="com.vue.back.dto.BoardDto">
     SELECT
     	uid,
+    	type,
     	title,
     	created_user,
     	view_cnt,
@@ -30,7 +31,29 @@
     ORDER BY
     	UID
     ASC
-  </select>         
+  </select>   
+  
+  <update id="readViewCount">
+  	UPDATE 
+  		board
+  	SET
+  		view_cnt = view_cnt + 1
+  	WHERE
+  		uid = #{uid}
+  </update>
+  
+  <select id="getGoodBadBoard" resultType="com.vue.back.dto.BoardGoodBadDto">
+  	SELECT
+  		mother_uid,
+  		created_user,
+  		good_bad
+  	FROM
+  		good_bad
+  	WHERE
+  		mother_uid = #{uid}
+  	AND
+  		created_user = #{created_user}
+  </select>      
   
   <insert id="insertBoard" parameterType="com.vue.back.dto.BoardDto">
   <!-- 그럼 이제 넣기만해면 댐 끝 -->

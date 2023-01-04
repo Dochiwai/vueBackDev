@@ -55,6 +55,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.updateBadBoard(boardGoodBadDto);
 	}
 
+	@Override
+	public BoardGoodBadDto getGoodBadBoard(long uid) {
+		log.info(">>>getBoardGood check 2");
+		return boardMapper.getGoodBadBoard(uid);
+	}
+
 
 	
 }
