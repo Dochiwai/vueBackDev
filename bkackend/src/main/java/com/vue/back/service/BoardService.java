@@ -16,10 +16,10 @@ public interface BoardService {
 
 	BoardDto getDetail(long uid);
 
-	int updateGoodBoard(BoardGoodBadDto boardGoodBadDto);
+	BoardGoodBadDto getGoodBadBoard(BoardGoodBadDto dto);
 
-	int updateBadBoard(BoardGoodBadDto boardGoodBadDto);
+	void updateGoodBad(BoardGoodBadDto boardGoodBadDto);
 
-	BoardGoodBadDto getGoodBadBoard(long uid);
+	void insertGoodBad(BoardGoodBadDto boardGoodBadDto);
 
 }

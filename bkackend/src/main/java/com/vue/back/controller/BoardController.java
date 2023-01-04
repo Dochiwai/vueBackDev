@@ -89,39 +89,27 @@ public class BoardController {
 		return result;
 	}
 
-	@PostMapping(value = "/api/board/{uid}/good")
-	public JSONObject boardDetailGood(@PathVariable("uid") long uid, @RequestBody BoardGoodBadDto boardGoodBadDto,
+	@PostMapping(value = "/api/board/goodBad")
+	public JSONObject boardDetailGood(@RequestBody BoardGoodBadDto boardGoodBadDto,
 			HttpServletRequest request) {
-		log.info(">>>uid = " + uid);
-		log.info(">>>boardDto = " + boardGoodBadDto.toString());
-		BoardGoodBadDto selectOk = boardService.getGoodBadBoard(uid);
-		boolean selectG = selectOk.getGood_bad().equals("G");
+		
 		JSONObject result = new JSONObject();
-		if (selectOk.getGood_bad().equals(selectG)) {
-			result.put("result", 400);
-		} else {
-			int isOk = boardService.updateGoodBoard(boardGoodBadDto);
-			if (isOk > 0) {
-				result.put("result", 200);
-			} else {
-				result.put("result", 500);
-			}
+		BoardGoodBadDto userGoodBad = boardService.getGoodBadBoard(boardGoodBadDto);
+		
+		if(userGoodBad == null) {
+			// 아무것도 안했으면
+			boardService.insertGoodBad(boardGoodBadDto);
+		}else if(userGoodBad.getGood_bad().equals(boardGoodBadDto.getGood_bad())) {
+			//중복
+			result.put("result",400);
+			return result;
+		}else if(!userGoodBad.getGood_bad().equals(boardGoodBadDto.getGood_bad())){
+			// 이미 했으면,
+			boardService.updateGoodBad(boardGoodBadDto);
 		}
-
-		return result;
-	}
-
-	@PostMapping(value = "/api/board/{uid}/bad")
-	public JSONObject boardDetailBad(@PathVariable("uid") long uid, @RequestBody BoardGoodBadDto boardGoodBadDto) {
-		int isOk = boardService.updateBadBoard(boardGoodBadDto);
-
-		JSONObject result = new JSONObject();
-		if (isOk > 0) {
-			result.put("result", 200);
-		} else {
-			result.put("result", 500);
-		}
-
+		
+		result.put("result", 200);
+		
 		return result;
 	}
 }

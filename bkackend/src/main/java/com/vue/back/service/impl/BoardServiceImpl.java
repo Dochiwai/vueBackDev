@@ -44,21 +44,18 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int updateGoodBoard(BoardGoodBadDto boardGoodBadDto) {
-		log.info(">>>BoardGood check 2");
-		return boardMapper.updateGoodBoard(boardGoodBadDto);
+	public BoardGoodBadDto getGoodBadBoard(BoardGoodBadDto dto) {
+		return boardMapper.getGoodBadBoard(dto);
 	}
 
 	@Override
-	public int updateBadBoard(BoardGoodBadDto boardGoodBadDto) {
-		log.info(">>>BoardBad check 2");
-		return boardMapper.updateBadBoard(boardGoodBadDto);
+	public void updateGoodBad(BoardGoodBadDto dto) {
+		boardMapper.updateGoodBad(dto);
 	}
 
 	@Override
-	public BoardGoodBadDto getGoodBadBoard(long uid) {
-		log.info(">>>getBoardGood check 2");
-		return boardMapper.getGoodBadBoard(uid);
+	public void insertGoodBad(BoardGoodBadDto dto) {
+		boardMapper.insertGoodBad(dto);
 	}
 
 

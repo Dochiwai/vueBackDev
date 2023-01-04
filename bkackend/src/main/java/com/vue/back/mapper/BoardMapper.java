@@ -21,10 +21,10 @@ public interface BoardMapper {
 	
 	public void readViewCnt(long uid);
 
-	public int updateGoodBoard(BoardGoodBadDto boardGoodBadDto);
+	public BoardGoodBadDto getGoodBadBoard(BoardGoodBadDto dto);
 
-	public int updateBadBoard(BoardGoodBadDto boardGoodBadDto);
+	public void updateGoodBad(BoardGoodBadDto dto);
 
-	public BoardGoodBadDto getGoodBadBoard(long uid);
+	public void insertGoodBad(BoardGoodBadDto dto);
 
 }

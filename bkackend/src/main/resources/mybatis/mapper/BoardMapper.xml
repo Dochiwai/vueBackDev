@@ -40,20 +40,7 @@
   		view_cnt = view_cnt + 1
   	WHERE
   		uid = #{uid}
-  </update>
-  
-  <select id="getGoodBadBoard" resultType="com.vue.back.dto.BoardGoodBadDto">
-  	SELECT
-  		mother_uid,
-  		created_user,
-  		good_bad
-  	FROM
-  		good_bad
-  	WHERE
-  		mother_uid = #{uid}
-  	AND
-  		created_user = #{created_user}
-  </select>      
+  </update>    
   
   <insert id="insertBoard" parameterType="com.vue.back.dto.BoardDto">
   <!-- 그럼 이제 넣기만해면 댐 끝 -->
@@ -87,40 +74,40 @@
  		uid = #{uid}
   </select>
   
-<insert id="updateGoodBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
-  	INSERT INTO good_bad(
+  <select id="getGoodBadBoard" parameterType="com.vue.back.dto.BoardGoodBadDto" resultType="com.vue.back.dto.BoardGoodBadDto">
+ 	SELECT
   		mother_uid,
   		created_user,
-  		good_bad,
-  		created_at
-  		)
-  	VALUES(
-  		#{uid},
-  		#{created_user},
-  		'G',
-  		now()
-  	)
-  	ON DUPLICATE KEY UPDATE
-  		good_bad = 'G'
-  				
-  </insert> 
+  		good_bad
+  	FROM
+  		good_bad
+  	WHERE
+  		mother_uid = #{mother_uid}
+  	AND
+  		created_user = #{created_user}
+  </select>  
   
-  <insert id="updateBadBoard" parameterType="com.vue.back.dto.BoardGoodBadDto">
-  	INSERT INTO good_bad(
-  		mother_uid,
-  		created_user,
-  		good_bad,
-  		created_at
-  		)
-  	VALUES(
-  		#{uid},
-  		#{created_user},
-  		'B',
-  		now()
+  <update id="updateGoodBad" parameterType="com.vue.back.dto.BoardGoodBadDto">
+  	UPDATE
+  		good_bad
+  	SET
+  		good_bad = #{good_bad} ,
+  		updated_at = now()
+  	WHERE
+  		mother_uid = #{mother_uid}
+  	AND
+  		created_user = #{created_user}
+  </update>
+  
+  <insert id="insertGoodBad" parameterType="com.vue.back.dto.BoardGoodBadDto">
+  	INSERT INTO	good_bad (
+		mother_uid,created_user,good_bad,created_at
   	)
-  	ON DUPLICATE KEY UPDATE
-  		good_bad = 'B'
+  	VALUES(
+  		#{mother_uid},#{created_user},#{good_bad},now()
+  	)
   </insert>
+  
   
   
 </mapper>
