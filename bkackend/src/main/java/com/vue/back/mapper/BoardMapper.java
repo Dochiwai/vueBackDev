@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
 
 @Mapper
@@ -26,5 +27,7 @@ public interface BoardMapper {
 	public void updateGoodBad(BoardGoodBadDto dto);
 
 	public void insertGoodBad(BoardGoodBadDto dto);
+
+	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid);
 
 }

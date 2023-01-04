@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
 
 public interface BoardService {
@@ -21,5 +22,7 @@ public interface BoardService {
 	void updateGoodBad(BoardGoodBadDto boardGoodBadDto);
 
 	void insertGoodBad(BoardGoodBadDto boardGoodBadDto);
+
+	BoardGoodBadCntDto getGoodBadCnt(long mother_uid);
 
 }

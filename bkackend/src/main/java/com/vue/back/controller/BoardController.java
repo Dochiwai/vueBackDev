@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
 import com.vue.back.dto.UserDto;
 import com.vue.back.service.BoardService;
@@ -107,7 +108,9 @@ public class BoardController {
 			// 이미 했으면,
 			boardService.updateGoodBad(boardGoodBadDto);
 		}
+		BoardGoodBadCntDto cntDto = boardService.getGoodBadCnt(boardGoodBadDto.getMother_uid());
 		
+		result.put("cnt", cntDto);
 		result.put("result", 200);
 		
 		return result;

@@ -108,6 +108,15 @@
   	)
   </insert>
   
+  <select id="getGoodBadCnt" parameterType="Long" resultType="com.vue.back.dto.BoardGoodBadCntDto">
+	SELECT
+		count(case when good_bad ='G' then 1 end) as 'good_cnt' ,
+		count(case when good_bad ='B' then 1 end) as 'bad_cnt' 
+	FROM
+		good_bad gb 
+	WHERE 
+		mother_uid = #{mother_uid}
+  </select>
   
   
 </mapper>

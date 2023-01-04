@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
+import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
 import com.vue.back.mapper.BoardMapper;
 import com.vue.back.service.BoardService;
@@ -56,6 +57,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void insertGoodBad(BoardGoodBadDto dto) {
 		boardMapper.insertGoodBad(dto);
+	}
+
+	@Override
+	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid) {
+		return boardMapper.getGoodBadCnt(mother_uid);
 	}
 
 
