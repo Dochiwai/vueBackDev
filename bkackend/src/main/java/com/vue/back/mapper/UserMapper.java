@@ -13,4 +13,7 @@ public interface UserMapper {
 
 	UserDto getUserByUserDto(UserDto dto);
 
+	void updateUser(UserDto user);
+
+
 }

@@ -18,22 +18,35 @@
   
   <select id="getBoardList" resultType="com.vue.back.dto.BoardDto">
     SELECT
-    	uid,
-    	type,
-    	title,
-    	created_user,
-    	view_cnt,
-    	created_at
-    FROM
-    	board
+    	b.uid,
+    	b.type,
+    	IFNULL(SUM(
+    		CASE WHEN good_bad='G' 
+    		THEN 1
+    		END
+    	),0) as 'good',
+    	IFNULL(SUM(
+    		CASE WHEN good_bad='B' 
+    		THEN 1
+    		END
+    	),0) as 'bad',
+    	b.title,
+    	b.created_user,
+    	b.view_cnt,
+    	b.created_at
+ 	FROM
+ 		board b
+ 	JOIN
+ 		good_bad gb
+ 	ON
+ 		b.uid = gb.mother_uid
     WHERE
     	is_del = 0
     ORDER BY
-    	UID
-    ASC
+    	b.uid
   </select>   
   
-  <update id="readViewCount">
+  <update id="readViewCnt">
   	UPDATE 
   		board
   	SET
@@ -91,7 +104,7 @@
   	UPDATE
   		good_bad
   	SET
-  		good_bad = #{good_bad} ,
+  		good_bad = #{good_bad},
   		updated_at = now()
   	WHERE
   		mother_uid = #{mother_uid}

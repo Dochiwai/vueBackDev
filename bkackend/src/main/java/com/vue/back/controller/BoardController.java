@@ -63,6 +63,7 @@ public class BoardController {
 	public JSONObject boardList() {
 		log.info(">>>> boardList check 1");
 		List<BoardDto> list = boardService.getList();
+		log.info(">>>list : " + list);
 		JSONObject result = new JSONObject();
 		if (list.size() > 0) {
 			result.put("boardList", list);

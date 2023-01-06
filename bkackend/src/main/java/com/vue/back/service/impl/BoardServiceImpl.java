@@ -41,6 +41,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDto getDetail(long uid) {
 		log.info(">>>BoardDetail check 2");
+		boardMapper.readViewCnt(uid);
 		return boardMapper.getBoardDetail(uid);
 	}
 
@@ -63,7 +64,5 @@ public class BoardServiceImpl implements BoardService {
 	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid) {
 		return boardMapper.getGoodBadCnt(mother_uid);
 	}
-
-
 	
 }

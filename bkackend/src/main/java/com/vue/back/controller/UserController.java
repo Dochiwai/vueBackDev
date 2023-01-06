@@ -66,4 +66,18 @@ public class UserController {
 		return result;
 
 	}
+	
+	@PostMapping(value = "/api/mypageSave")
+	public JSONObject myPage(@RequestBody UserDto user) {
+		boolean isUp = userService.updateMember(user);
+		JSONObject result = new JSONObject();
+		
+		if(isUp) {
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
+		
+		return result;
+	}	
 }

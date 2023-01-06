@@ -57,7 +57,14 @@ public class UserServiceImpl implements UserService {
 		
 		return user;
 	}
-	
+
+
+	@Override
+	public boolean updateMember(UserDto user) {
+		log.info(">>> login check2");
+		userMapper.updateUser(user);
+		return true;	
+	}
 
 
 }
