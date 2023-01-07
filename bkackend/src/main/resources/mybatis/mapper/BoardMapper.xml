@@ -36,14 +36,13 @@
     	b.created_at
  	FROM
  		board b
- 	JOIN
+ 	LEFT JOIN
  		good_bad gb
  	ON
  		b.uid = gb.mother_uid
     WHERE
-    	is_del = 0
-    ORDER BY
-    	b.uid
+    	is_del = 0 
+	GROUP BY b.uid;
   </select>   
   
   <update id="readViewCnt">

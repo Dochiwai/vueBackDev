@@ -33,9 +33,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDto> getList() {
+	public List<BoardDto> getList(BoardDto boardDto) {
 		log.info(">>>BoardList check 2");
-		return boardMapper.getBoardList();
+		return boardMapper.getBoardList(boardDto);
 	}
 
 	@Override
