@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vue.back.mapper.BoardMapper">
-
+	
   <select id="getBoardType" resultType="com.vue.back.dto.BoardTypeDto">
   	SELECT
   		uid,
@@ -18,22 +18,34 @@
   
   <select id="getBoardList" resultType="com.vue.back.dto.BoardDto">
     SELECT
-    	uid,
-    	type,
-    	title,
-    	created_user,
-    	view_cnt,
-    	created_at
-    FROM
-    	board
+    	b.uid,
+    	b.type,
+    	IFNULL(SUM(
+    		CASE WHEN good_bad='G' 
+    		THEN 1
+    		END
+    	),0) as good_cnt,
+    	IFNULL(SUM(
+    		CASE WHEN good_bad='B' 
+    		THEN 1
+    		END
+    	),0) as bad_cnt,
+    	b.title,
+    	b.created_user,
+    	b.view_cnt,
+    	b.created_at
+ 	FROM
+ 		board b
+ 	LEFT JOIN
+ 		good_bad gb
+ 	ON
+ 		b.uid = gb.mother_uid
     WHERE
-    	is_del = 0
-    ORDER BY
-    	UID
-    ASC
+    	is_del = 0 
+	GROUP BY b.uid;
   </select>   
   
-  <update id="readViewCount">
+  <update id="readViewCnt">
   	UPDATE 
   		board
   	SET
@@ -91,7 +103,7 @@
   	UPDATE
   		good_bad
   	SET
-  		good_bad = #{good_bad} ,
+  		good_bad = #{good_bad},
   		updated_at = now()
   	WHERE
   		mother_uid = #{mother_uid}

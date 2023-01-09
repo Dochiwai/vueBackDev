@@ -34,4 +34,13 @@
   	VALUES(#{email}, #{pw}, #{name}, #{phone})
   </insert>
   
+  <update id="updateUser">
+  	UPDATE SET user
+  		pw = #{pw}
+  		name = #{name}
+  		phone = #{phone}
+  	WHERE
+  		email = #{email}
+  </update>
+  
 </mapper>

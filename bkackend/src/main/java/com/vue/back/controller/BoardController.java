@@ -60,9 +60,10 @@ public class BoardController {
 	}
 
 	@PostMapping(value = "/api/boardList")
-	public JSONObject boardList() {
+	public JSONObject boardList(@RequestBody BoardDto boardDto) {
 		log.info(">>>> boardList check 1");
-		List<BoardDto> list = boardService.getList();
+		List<BoardDto> list = boardService.getList(boardDto);
+		log.info(">>>list : " + list);
 		JSONObject result = new JSONObject();
 		if (list.size() > 0) {
 			result.put("boardList", list);

@@ -8,6 +8,8 @@ import lombok.Data;
 public class BoardDto {
 	private long uid;
 	private String type;
+	private String good_cnt;
+	private String bad_cnt;
 	private String title;
 	private String content;
 	private String created_user;

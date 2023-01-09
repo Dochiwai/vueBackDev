@@ -33,14 +33,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDto> getList() {
+	public List<BoardDto> getList(BoardDto boardDto) {
 		log.info(">>>BoardList check 2");
-		return boardMapper.getBoardList();
+		return boardMapper.getBoardList(boardDto);
 	}
 
 	@Override
 	public BoardDto getDetail(long uid) {
 		log.info(">>>BoardDetail check 2");
+		boardMapper.readViewCnt(uid);
 		return boardMapper.getBoardDetail(uid);
 	}
 
@@ -63,7 +64,5 @@ public class BoardServiceImpl implements BoardService {
 	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid) {
 		return boardMapper.getGoodBadCnt(mother_uid);
 	}
-
-
 	
 }

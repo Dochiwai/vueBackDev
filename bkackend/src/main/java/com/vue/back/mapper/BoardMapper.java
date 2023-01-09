@@ -16,7 +16,9 @@ public interface BoardMapper {
 
 	public int insertBoard(BoardDto boardDto);
 
-	public List<BoardDto> getBoardList();
+	public List<BoardDto> getBoardList(BoardDto boardDto);
+	
+	public List<BoardDto> getBoardGoodCnt();
 
 	public BoardDto getBoardDetail(long uid);
 	
