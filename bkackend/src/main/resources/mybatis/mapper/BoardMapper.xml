@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vue.back.mapper.BoardMapper">
-
+	
   <select id="getBoardType" resultType="com.vue.back.dto.BoardTypeDto">
   	SELECT
   		uid,
@@ -24,12 +24,12 @@
     		CASE WHEN good_bad='G' 
     		THEN 1
     		END
-    	),0) as 'good',
+    	),0) as good_cnt,
     	IFNULL(SUM(
     		CASE WHEN good_bad='B' 
     		THEN 1
     		END
-    	),0) as 'bad',
+    	),0) as bad_cnt,
     	b.title,
     	b.created_user,
     	b.view_cnt,
