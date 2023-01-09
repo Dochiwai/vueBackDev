@@ -19,7 +19,7 @@
   <select id="getBoardList" resultType="com.vue.back.dto.BoardDto">
     SELECT
     	b.uid,
-    	b.type,
+    	bt.type,
     	IFNULL(SUM(
     		CASE WHEN good_bad='G' 
     		THEN 1
@@ -40,6 +40,10 @@
  		good_bad gb
  	ON
  		b.uid = gb.mother_uid
+ 	JOIN
+ 		board_type bt
+ 	ON
+ 		b.uid = bt.uid
     WHERE
     	is_del = 0 
 	GROUP BY b.uid;
