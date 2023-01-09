@@ -34,10 +34,11 @@
   	VALUES(#{email}, #{pw}, #{name}, #{phone})
   </insert>
   
-  <update id="updateUser">
-  	UPDATE SET user
-  		pw = #{pw}
-  		name = #{name}
+  <update id="updateUser" parameterType="com.vue.back.dto.UserDto">
+  	UPDATE user 
+  	SET 	
+  		pw = #{pw},
+  		name = #{name},
   		phone = #{phone}
   	WHERE
   		email = #{email}

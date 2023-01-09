@@ -8,5 +8,5 @@ public interface UserService {
 
 	UserDto isUser(UserDto dto) throws Exception;
 
-	boolean updateMember(UserDto user);
+	boolean updateMember(UserDto user) throws Exception;
 }

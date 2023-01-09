@@ -67,9 +67,10 @@ public class UserController {
 
 	}
 	
-	@PostMapping(value = "/api/mypageSave")
-	public JSONObject myPage(@RequestBody UserDto user) {
+	@PostMapping(value = "/api/myPageSave")
+	public JSONObject myPage(@RequestBody UserDto user) throws Exception {
 		boolean isUp = userService.updateMember(user);
+		log.info(">>>isUser : " + isUp);
 		JSONObject result = new JSONObject();
 		
 		if(isUp) {
