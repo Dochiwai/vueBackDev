@@ -13,7 +13,9 @@ public interface UserMapper {
 
 	UserDto getUserByUserDto(UserDto dto);
 
-	UserDto updateUser(UserDto user);
+	UserDto getUserInfo(UserDto user);
+
+	void updateUser(UserDto user);
 
 
 }

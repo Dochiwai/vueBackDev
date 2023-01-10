@@ -58,20 +58,18 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-
 	@Override
-	public boolean updateMember(UserDto user) throws Exception {
-		log.info(">>> updateMember check2");
-		AES256 aes256 = new AES256();
-		UserDto tmpUser = userMapper.updateUser(user);
-		
-		if(tmpUser.getPw() == null || tmpUser.getPw().length() == 0) {
-			return false;
-		}else {
-			user.setPw(aes256.encrypt(tmpUser.getPw()));
-			return true;
-		}	
+	public UserDto getUserInfo(UserDto user) {
+		log.info(">>> getUserInfo check 2");
+		return userMapper.getUserInfo(user);
 	}
 
+
+	@Override
+	public boolean updateUser(UserDto user) {
+		log.info("ChangeUserInfo check 2");
+		userMapper.updateUser(user);
+		return true;
+	}
 
 }

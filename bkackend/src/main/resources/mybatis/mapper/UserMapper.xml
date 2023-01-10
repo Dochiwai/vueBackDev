@@ -26,7 +26,9 @@
   	AND
   		pw = #{pw}
   	AND
-  		status = 0 AND email_check = 0
+  		status = 0 
+  	AND 
+  		email_check = 0
   </select>
   
   <insert id="signUpUser">
@@ -34,14 +36,32 @@
   	VALUES(#{email}, #{pw}, #{name}, #{phone})
   </insert>
   
+  <select id="getUserInfo" parameterType="com.vue.back.dto.UserDto" resultType="com.vue.back.dto.UserDto">
+  	SELECT
+  		email,
+  		pw,
+  		name,
+  		phone
+  	FROM
+  		user
+  	WHERE
+  		email = #{email}
+  	AND
+  		status = 0
+  	AND
+  		email_check = 0
+  </select>
+  
   <update id="updateUser" parameterType="com.vue.back.dto.UserDto">
-  	UPDATE user 
-  	SET 	
+  	UPDATE
+  		user
+  	SET
   		pw = #{pw},
   		name = #{name},
-  		phone = #{phone}
+  		phone = #{phone},
+  		updated_at = now()
   	WHERE
   		email = #{email}
   </update>
-  
+
 </mapper>

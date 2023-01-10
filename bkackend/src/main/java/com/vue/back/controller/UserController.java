@@ -67,18 +67,35 @@ public class UserController {
 
 	}
 	
-	@PostMapping(value = "/api/myPageSave")
-	public JSONObject myPage(@RequestBody UserDto user) throws Exception {
-		boolean isUp = userService.updateMember(user);
-		log.info(">>>isUser : " + isUp);
+	@PostMapping(value = "/api/getUser")
+	public JSONObject getMyInfo(@RequestBody UserDto user) {
+		log.info("getUserInfo check 1");
+		log.info("user: " + user);
 		JSONObject result = new JSONObject();
+		UserDto isUp = userService.getUserInfo(user);
+		if(isUp != null) {
+			result.put("user",isUp);
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);	
+		}
+		return result;
+	}
+	
+	@PostMapping(value = "/api/mypageSave")
+	public JSONObject userSave(@RequestBody UserDto user) throws Exception {
+		log.info("ChangeUserInfo check 1");
+		JSONObject result = new JSONObject();
+		log.info(">> log : " + user.toString());
+		boolean isUp = userService.updateUser(user);
+		System.out.println(isUp);
 		
 		if(isUp) {
 			result.put("result", 200);
 		}else {
 			result.put("result", 500);
 		}
-		
 		return result;
-	}	
+		
+	}
 }
