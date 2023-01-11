@@ -1,6 +1,7 @@
 package com.vue.back.service;
 
 import com.vue.back.dto.UserDto;
+import com.vue.back.dto.UserUpdateDto;
 
 public interface UserService {
 
@@ -10,6 +11,6 @@ public interface UserService {
 
 	UserDto getUserInfo(UserDto user);
 
-	boolean updateUser(UserDto user);
+	void updateUser(UserUpdateDto user);
 
 }

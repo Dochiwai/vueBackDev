@@ -3,6 +3,7 @@ package com.vue.back.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.vue.back.dto.UserDto;
+import com.vue.back.dto.UserUpdateDto;
 
 @Mapper
 public interface UserMapper {
@@ -15,7 +16,7 @@ public interface UserMapper {
 
 	UserDto getUserInfo(UserDto user);
 
-	void updateUser(UserDto user);
+	void updateUser(UserUpdateDto user);
 
 
 }

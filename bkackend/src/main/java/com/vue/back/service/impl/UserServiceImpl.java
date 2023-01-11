@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vue.back.dto.UserDto;
+import com.vue.back.dto.UserUpdateDto;
 import com.vue.back.mapper.UserMapper;
 import com.vue.back.service.UserService;
 import com.vue.back.util.AES256;
@@ -66,10 +67,9 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public boolean updateUser(UserDto user) {
+	public void updateUser(UserUpdateDto user) {
 		log.info("ChangeUserInfo check 2");
 		userMapper.updateUser(user);
-		return true;
 	}
 
 }
