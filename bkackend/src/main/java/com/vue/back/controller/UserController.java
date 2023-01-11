@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vue.back.dto.UserDto;
 import com.vue.back.dto.UserUpdateDto;
 import com.vue.back.service.UserService;
+import com.vue.back.util.AES256;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -84,7 +85,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/api/mypageSave")
-	public JSONObject userSave(@RequestBody UserUpdateDto user) throws Exception {
+	public JSONObject userSave(@RequestBody UserUpdateDto user, HttpServletRequest request) throws Exception {
 		log.info("ChangeUserInfo check 1");
 		JSONObject result = new JSONObject();
 		log.info(">> log : " + user.toString());

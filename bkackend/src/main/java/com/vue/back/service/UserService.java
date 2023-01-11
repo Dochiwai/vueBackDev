@@ -11,6 +11,6 @@ public interface UserService {
 
 	UserDto getUserInfo(UserDto user);
 
-	void updateUser(UserUpdateDto user);
+	void updateUser(UserUpdateDto user) throws Exception;
 
 }

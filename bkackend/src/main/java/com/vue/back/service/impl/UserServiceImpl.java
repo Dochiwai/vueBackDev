@@ -67,8 +67,10 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public void updateUser(UserUpdateDto user) {
+	public void updateUser(UserUpdateDto user) throws Exception {
 		log.info("ChangeUserInfo check 2");
+		AES256 aes256 = new AES256();
+		user.setPassword(aes256.encrypt(user.getPassword()));
 		userMapper.updateUser(user);
 	}
 
