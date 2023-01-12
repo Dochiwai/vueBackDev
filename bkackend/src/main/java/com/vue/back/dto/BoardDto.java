@@ -17,4 +17,5 @@ public class BoardDto {
 	private Date updated_at;
 	private int is_del;
 	private int view_cnt;
+	private int page;
 }

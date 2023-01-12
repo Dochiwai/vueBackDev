@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vue.back.dto.BoardTypeDto;
+import com.vue.back.dto.PageDto;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
@@ -64,5 +65,11 @@ public class BoardServiceImpl implements BoardService {
 	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid) {
 		return boardMapper.getGoodBadCnt(mother_uid);
 	}
+
+	@Override
+	public int getTotalCnt(BoardDto boardDto) {
+		return boardMapper.getTotalCnt(boardDto);
+	}
+
 	
 }

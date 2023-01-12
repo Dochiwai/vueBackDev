@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
-import com.vue.back.dto.UserDto;
+import com.vue.back.dto.BoardTypeDto;
+import com.vue.back.dto.PageDto;
 import com.vue.back.service.BoardService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -59,14 +59,17 @@ public class BoardController {
 		return result;
 	}
 
-	@PostMapping(value = "/api/boardList")
+	@PostMapping(value = "/api/boardList") // 여기가 리스트인가요 ㅖ
 	public JSONObject boardList(@RequestBody BoardDto boardDto) {
 		log.info(">>>> boardList check 1");
 		List<BoardDto> list = boardService.getList(boardDto);
+		int listCnt = boardService.getTotalCnt(boardDto);
+		System.out.println(">>>>>>>>> ?? " + listCnt);
 		log.info(">>> list : " + list);
 		JSONObject result = new JSONObject();
 		if (list.size() > 0) {
 			result.put("boardList", list);
+			result.put("listCnt", listCnt);
 			result.put("result", 200);
 		} else {
 			result.put("result", 500);

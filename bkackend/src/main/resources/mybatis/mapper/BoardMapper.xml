@@ -46,8 +46,24 @@
  		b.uid = bt.uid
     WHERE
     	is_del = 0 
-	GROUP BY b.uid;
+    AND
+    	b.type = #{type}
+	GROUP BY 
+		b.uid
   </select>   
+  
+  <select id="getTotalCnt" parameterType="com.vue.back.dto.BoardDto" resultType="int">
+  	SELECT
+  		count(*)
+  	FROM
+  		board
+  	WHERE
+  		1=1
+  	AND
+  		is_del = 0
+  	AND
+  		type = #{type}
+  </select>
   
   <update id="readViewCnt">
   	UPDATE 
