@@ -6,10 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vue.back.dto.BoardDto;
@@ -44,7 +44,7 @@ public class BoardController {
 		return result;
 	}
 
-	@PostMapping(value = "/api/boardSave")
+	@PostMapping(value = "/api/boardSave", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE } )
 	public JSONObject boardSave(@RequestBody BoardDto boardDto, HttpServletRequest request) {
 		log.info(">>>boardSave check 1");
 		System.out.println(boardDto.toString());
@@ -112,6 +112,20 @@ public class BoardController {
 			result.put("result", 500);
 		}
 
+		return result;
+	}
+	
+	@PostMapping(value = "/api/boardDelete/{uid}")
+	public JSONObject boardRemove(@PathVariable("uid") long uid) {
+		System.out.println("uid >> " + uid);
+		int isUp = boardService.removeBoard(uid);
+		JSONObject result = new JSONObject();
+		
+		if(isUp > 0) {
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
 		return result;
 	}
 

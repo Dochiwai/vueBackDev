@@ -28,4 +28,6 @@ public interface BoardService {
 
 	int getTotalCnt(PageDto pageDto);
 
+	int removeBoard(long uid);
+
 }

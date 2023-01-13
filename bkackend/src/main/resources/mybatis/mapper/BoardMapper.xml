@@ -152,5 +152,14 @@
 		mother_uid = #{mother_uid}
   </select>
   
+  <update id="removeBoard">
+  	UPDATE
+  		board
+  	SET
+  		is_del = 1
+  	WHERE
+  		uid = #{uid}
+  </update>
+  
   
 </mapper>

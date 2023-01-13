@@ -71,5 +71,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.getTotalCnt(pageDto);
 	}
 
+	@Override
+	public int removeBoard(long uid) {
+		return boardMapper.removeBoard(uid);
+	}
+
 	
 }

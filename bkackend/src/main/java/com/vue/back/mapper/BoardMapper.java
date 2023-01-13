@@ -34,4 +34,6 @@ public interface BoardMapper {
 	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid);
 
 	public int getTotalCnt(PageDto pageDto);
+
+	public int removeBoard(long uid);
 }
