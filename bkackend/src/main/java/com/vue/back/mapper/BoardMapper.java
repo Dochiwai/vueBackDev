@@ -17,7 +17,7 @@ public interface BoardMapper {
 
 	public int insertBoard(BoardDto boardDto);
 
-	public List<BoardDto> getBoardList(BoardDto boardDto);
+	public List<BoardDto> getBoardList(PageDto pageDto);
 	
 	public List<BoardDto> getBoardGoodCnt();
 
@@ -33,5 +33,5 @@ public interface BoardMapper {
 
 	public BoardGoodBadCntDto getGoodBadCnt(long mother_uid);
 
-	public int getTotalCnt(BoardDto boardDto);
+	public int getTotalCnt(PageDto pageDto);
 }

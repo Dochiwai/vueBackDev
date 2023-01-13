@@ -34,9 +34,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardDto> getList(BoardDto boardDto) {
+	public List<BoardDto> getList(PageDto pageDto) {
 		log.info(">>>BoardList check 2");
-		return boardMapper.getBoardList(boardDto);
+		return boardMapper.getBoardList(pageDto);
 	}
 
 	@Override
@@ -67,8 +67,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotalCnt(BoardDto boardDto) {
-		return boardMapper.getTotalCnt(boardDto);
+	public int getTotalCnt(PageDto pageDto) {
+		return boardMapper.getTotalCnt(pageDto);
 	}
 
 	

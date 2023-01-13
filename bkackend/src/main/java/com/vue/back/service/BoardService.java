@@ -14,7 +14,7 @@ public interface BoardService {
 
 	int insertBoard(BoardDto boardDto);
 
-	List<BoardDto> getList(BoardDto boardDto);
+	List<BoardDto> getList(PageDto pageDto);
 
 	BoardDto getDetail(long uid);
 
@@ -26,6 +26,6 @@ public interface BoardService {
 
 	BoardGoodBadCntDto getGoodBadCnt(long mother_uid);
 
-	int getTotalCnt(BoardDto boardDto);
+	int getTotalCnt(PageDto pageDto);
 
 }

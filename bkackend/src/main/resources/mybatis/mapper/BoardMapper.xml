@@ -50,6 +50,8 @@
     	b.type = #{type}
 	GROUP BY 
 		b.uid
+	LIMIT
+		#{startPage}, #{qty}
   </select>   
   
   <select id="getTotalCnt" parameterType="com.vue.back.dto.BoardDto" resultType="int">
