@@ -30,4 +30,6 @@ public interface BoardService {
 
 	int removeBoard(long uid);
 
+	BoardDto getMyBoard(BoardDto boardDto);
+
 }

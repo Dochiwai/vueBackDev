@@ -128,6 +128,20 @@ public class BoardController {
 		}
 		return result;
 	}
+	
+	@PostMapping(value = "/api/getBoard/{uid}")
+	public JSONObject getMyBoard(@RequestBody BoardDto boardDto) {
+		JSONObject result = new JSONObject();
+		BoardDto isUp = boardService.getMyBoard(boardDto);
+		log.info("isUp??? >>> " + isUp);
+		if(isUp != null) {
+			result.put("board", isUp);
+			result.put("result", 200);
+		}else {
+			result.put("result", 500);
+		}
+		return result;
+	}
 
 	@PostMapping(value = "/api/board/goodBad")
 	public JSONObject boardDetailGood(@RequestBody BoardGoodBadDto boardGoodBadDto,

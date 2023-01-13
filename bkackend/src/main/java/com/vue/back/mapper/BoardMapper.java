@@ -36,4 +36,6 @@ public interface BoardMapper {
 	public int getTotalCnt(PageDto pageDto);
 
 	public int removeBoard(long uid);
+
+	public BoardDto getMyBoard(BoardDto boardDto);
 }

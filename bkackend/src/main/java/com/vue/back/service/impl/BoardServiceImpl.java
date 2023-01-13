@@ -76,5 +76,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.removeBoard(uid);
 	}
 
+	@Override
+	public BoardDto getMyBoard(BoardDto boardDto) {
+		return boardMapper.getMyBoard(boardDto);
+	}
+
 	
 }

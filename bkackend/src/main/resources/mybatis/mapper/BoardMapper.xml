@@ -108,6 +108,17 @@
  		uid = #{uid}
   </select>
   
+  <select id="getMyBoard" parameterType="com.vue.back.dto.BoardDto" resultType="com.vue.back.dto.BoardDto">
+  	SELECT
+  		uid,
+  		title,
+  		content,
+  	FROM
+  		board
+  	WHERE
+  		uid = #{uid}
+  </select>
+  
   <select id="getGoodBadBoard" parameterType="com.vue.back.dto.BoardGoodBadDto" resultType="com.vue.back.dto.BoardGoodBadDto">
  	SELECT
   		mother_uid,
