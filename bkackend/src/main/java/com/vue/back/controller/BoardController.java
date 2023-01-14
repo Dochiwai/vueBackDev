@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
+import com.vue.back.dto.BoardModifyDto;
 import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.PageDto;
 import com.vue.back.service.BoardService;
@@ -47,7 +48,6 @@ public class BoardController {
 	@PostMapping(value = "/api/boardSave", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE } )
 	public JSONObject boardSave(@RequestBody BoardDto boardDto, HttpServletRequest request) {
 		log.info(">>>boardSave check 1");
-		System.out.println(boardDto.toString());
 
 		int isOK = boardService.insertBoard(boardDto);
 
@@ -81,12 +81,8 @@ public class BoardController {
 	
 	@PostMapping(value = "/api/boardList") // 여기가 리스트인가요 ㅖ@RequestParam(value = "page", required = false, defaultValue = "1")int page
 	public JSONObject boardList(@RequestBody PageDto pageDto) {
-		log.info("??????page >> " + pageDto.getPage() + pageDto.getType());
-		log.info(">>>> boardList check 1");
 		List<BoardDto> list = boardService.getList(pageDto);
 		int listCnt = boardService.getTotalCnt(pageDto);
-		System.out.println(">>>>>>>>> ?? " + listCnt);
-		log.info(">>> list : " + list);
 		JSONObject result = new JSONObject();
 		if (list.size() > 0) {
 			result.put("boardList", list);
@@ -100,10 +96,8 @@ public class BoardController {
 
 	@PostMapping(value = "/api/boardView/{uid}")
 	public JSONObject boardDetail(@PathVariable("uid") long uid) {
-		System.out.println("uid >> " + uid);
 		BoardDto boardDto = boardService.getDetail(uid);
 		JSONObject result = new JSONObject();
-		log.info(boardDto.toString());
 
 		if (boardDto != null) {
 			result.put("board", boardDto);
@@ -133,13 +127,26 @@ public class BoardController {
 	public JSONObject getMyBoard(@RequestBody BoardDto boardDto) {
 		JSONObject result = new JSONObject();
 		BoardDto isUp = boardService.getMyBoard(boardDto);
-		log.info("isUp??? >>> " + isUp);
 		if(isUp != null) {
 			result.put("board", isUp);
 			result.put("result", 200);
 		}else {
 			result.put("result", 500);
 		}
+		return result;
+	}
+	
+	@PostMapping(value = "/api/modifySave")
+	public JSONObject modifyBoard(@RequestBody BoardModifyDto boardModifyDto) {
+		JSONObject result = new JSONObject();
+		log.info(">>>>>>>>modify : " + boardModifyDto.toString());
+		try {
+			boardService.modifyBoard(boardModifyDto);
+			result.put("result", 200);
+		} catch (Exception e) {
+			result.put("result", 500);
+		}
+		
 		return result;
 	}
 

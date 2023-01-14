@@ -7,6 +7,7 @@ import com.vue.back.dto.PageDto;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
+import com.vue.back.dto.BoardModifyDto;
 
 public interface BoardService {
 
@@ -31,5 +32,7 @@ public interface BoardService {
 	int removeBoard(long uid);
 
 	BoardDto getMyBoard(BoardDto boardDto);
+
+	void modifyBoard(BoardModifyDto boardModifyDto);
 
 }

@@ -112,7 +112,7 @@
   	SELECT
   		uid,
   		title,
-  		content,
+  		content
   	FROM
   		board
   	WHERE
@@ -168,6 +168,17 @@
   		board
   	SET
   		is_del = 1
+  	WHERE
+  		uid = #{uid}
+  </update>
+  
+  <update id="modifyBoard" parameterType="com.vue.back.dto.BoardModifyDto">
+  	UPDATE
+  		board
+  	SET
+  		title = #{title},
+  		content = #{content},
+  		updated_at = now()
   	WHERE
   		uid = #{uid}
   </update>

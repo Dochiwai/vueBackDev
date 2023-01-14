@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vue.back.dto.BoardTypeDto;
-import com.vue.back.dto.PageDto;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
+import com.vue.back.dto.BoardModifyDto;
+import com.vue.back.dto.BoardTypeDto;
+import com.vue.back.dto.PageDto;
 import com.vue.back.mapper.BoardMapper;
 import com.vue.back.service.BoardService;
 
@@ -79,6 +80,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDto getMyBoard(BoardDto boardDto) {
 		return boardMapper.getMyBoard(boardDto);
+	}
+
+	@Override
+	public void modifyBoard(BoardModifyDto boardModifyDto) {
+		boardMapper.modifyBoard(boardModifyDto);
+		
 	}
 
 	

@@ -9,6 +9,7 @@ import com.vue.back.dto.PageDto;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
+import com.vue.back.dto.BoardModifyDto;
 
 @Mapper
 public interface BoardMapper {
@@ -38,4 +39,6 @@ public interface BoardMapper {
 	public int removeBoard(long uid);
 
 	public BoardDto getMyBoard(BoardDto boardDto);
+
+	public void modifyBoard(BoardModifyDto boardModifyDto);
 }
