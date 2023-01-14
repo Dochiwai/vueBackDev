@@ -8,6 +8,7 @@ public class UserUpdateDto {
 	String email;
 	String password;
 	String phone;
+	String nickname;
 	String name;
 	
 }

@@ -13,6 +13,7 @@
   		uid,
   		email,
   		pw,
+  		nickname,
   		name,
   		phone,
   		created_at as createdAt,
@@ -32,14 +33,15 @@
   </select>
   
   <insert id="signUpUser">
-  	INSERT INTO user(email, pw, name, phone)
-  	VALUES(#{email}, #{pw}, #{name}, #{phone})
+  	INSERT INTO user(email, pw, nickname, name, phone)
+  	VALUES(#{email}, #{pw}, #{nickname}, #{name}, #{phone})
   </insert>
   
   <select id="getUserInfo" parameterType="com.vue.back.dto.UserDto" resultType="com.vue.back.dto.UserDto">
   	SELECT
   		email,
   		pw,
+  		nickname,
   		name,
   		phone
   	FROM
@@ -58,6 +60,7 @@
   	SET
   		pw = #{password},
   		name = #{name},
+  		nickname = #{nickname},
   		phone = #{phone},
   		updated_at = now()
   	WHERE
