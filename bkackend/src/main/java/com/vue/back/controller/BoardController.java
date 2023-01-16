@@ -48,38 +48,18 @@ public class BoardController {
 	@PostMapping(value = "/api/boardSave", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE } )
 	public JSONObject boardSave(@RequestBody BoardDto boardDto, HttpServletRequest request) {
 		log.info(">>>boardSave check 1");
-
-		int isOK = boardService.insertBoard(boardDto);
-
+		
 		JSONObject result = new JSONObject();
-		if (isOK > 0) {
+		try {
+			boardService.insertBoard(boardDto);
 			result.put("result", 200);
-		} else {
+		} catch (Exception e) {
 			result.put("result", 500);
 		}
 		return result;
 	}
-
-//	@PostMapping(value = "/api/boardList") // 여기가 리스트인가요 ㅖ@RequestParam(value = "page", required = false, defaultValue = "1")int page
-//	public JSONObject boardList(@RequestBody BoardDto boardDto) {
-//		log.info("??????page >> " + boardDto.getPage());
-//		log.info(">>>> boardList check 1");
-//		List<BoardDto> list = boardService.getList(boardDto);
-//		int listCnt = boardService.getTotalCnt(boardDto);
-//		System.out.println(">>>>>>>>> ?? " + listCnt);
-//		log.info(">>> list : " + list);
-//		JSONObject result = new JSONObject();
-//		if (list.size() > 0) {
-//			result.put("boardList", list);
-//			result.put("listCnt", listCnt);
-//			result.put("result", 200);
-//		} else {
-//			result.put("result", 500);
-//		}
-//		return result;
-//	}
 	
-	@PostMapping(value = "/api/boardList") // 여기가 리스트인가요 ㅖ@RequestParam(value = "page", required = false, defaultValue = "1")int page
+	@PostMapping(value = "/api/boardList") 
 	public JSONObject boardList(@RequestBody PageDto pageDto) {
 		List<BoardDto> list = boardService.getList(pageDto);
 		int listCnt = boardService.getTotalCnt(pageDto);
@@ -98,7 +78,7 @@ public class BoardController {
 	public JSONObject boardDetail(@PathVariable("uid") long uid) {
 		BoardDto boardDto = boardService.getDetail(uid);
 		JSONObject result = new JSONObject();
-
+		
 		if (boardDto != null) {
 			result.put("board", boardDto);
 			result.put("result", 200);

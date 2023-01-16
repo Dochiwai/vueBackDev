@@ -29,9 +29,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int insertBoard(BoardDto boardDto) {
+	public void insertBoard(BoardDto boardDto) {
 		log.info(">>>insert board check 2");
-		return boardMapper.insertBoard(boardDto);
+		boardMapper.insertBoard(boardDto);
 	}
 
 	@Override

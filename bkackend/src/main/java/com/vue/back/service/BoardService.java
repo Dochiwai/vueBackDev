@@ -13,7 +13,7 @@ public interface BoardService {
 
 	List<BoardTypeDto> getBoardType();
 
-	int insertBoard(BoardDto boardDto);
+	void insertBoard(BoardDto boardDto);
 
 	List<BoardDto> getList(PageDto pageDto);
 
