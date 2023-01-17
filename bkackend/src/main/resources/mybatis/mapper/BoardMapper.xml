@@ -50,8 +50,16 @@
     	b.type = #{type}
 	GROUP BY 
 		b.uid
+	<if test="page == null">
+	ORDER BY 
+		view_cnt
 	LIMIT
-		#{startPage}, #{qty}
+		5
+	</if>
+	<if test="page != null">
+		LIMIT
+			#{startPage}, #{qty}
+	</if>
   </select>   
   
   <select id="getTotalCnt" parameterType="com.vue.back.dto.BoardDto" resultType="int">
