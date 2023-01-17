@@ -47,10 +47,10 @@ public class BoardController {
 		return result;
 	}
 
-	@PostMapping(value = "/api/boardSave", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE } )
-	public JSONObject boardSave(@RequestBody BoardDto boardDto, @RequestParam(name="file", required = false)MultipartFile[] file, HttpServletRequest request) {
+
+	@PostMapping(value = "/api/boardSave")
+	public JSONObject boardSave(BoardDto boardDto, MultipartFile file,HttpServletRequest request) {
 		log.info(">>>boardSave check 1");
-		
 		JSONObject result = new JSONObject();
 		try {
 			boardService.insertBoard(boardDto);
