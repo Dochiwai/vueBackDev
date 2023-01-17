@@ -16,7 +16,7 @@ public interface BoardMapper {
 
 	public List<BoardTypeDto> getBoardType();
 
-	public int insertBoard(BoardDto boardDto);
+	public void insertBoard(BoardDto boardDto);
 
 	public List<BoardDto> getBoardList(PageDto pageDto);
 	
