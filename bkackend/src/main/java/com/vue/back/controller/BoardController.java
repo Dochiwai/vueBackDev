@@ -60,7 +60,7 @@ public class BoardController {
 	}
 	
 	@PostMapping(value = "/api/boardList") 
-	public JSONObject boardList(@RequestBody PageDto pageDto) {
+	public JSONObject boardList(@RequestBody(required = false) PageDto pageDto) {
 		List<BoardDto> list = boardService.getList(pageDto);
 		int listCnt = boardService.getTotalCnt(pageDto);
 		JSONObject result = new JSONObject();
