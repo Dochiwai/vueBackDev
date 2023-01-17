@@ -53,7 +53,7 @@ public class BoardController {
 		log.info(">>>boardSave check 1");
 		JSONObject result = new JSONObject();
 		try {
-			boardService.insertBoard(boardDto);
+			boardService.insertBoard(boardDto,file);
 			result.put("result", 200);
 		} catch (Exception e) {
 			result.put("result", 500);

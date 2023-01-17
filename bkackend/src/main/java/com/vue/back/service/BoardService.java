@@ -2,6 +2,8 @@ package com.vue.back.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.vue.back.dto.BoardTypeDto;
 import com.vue.back.dto.PageDto;
 import com.vue.back.dto.BoardDto;
@@ -13,7 +15,7 @@ public interface BoardService {
 
 	List<BoardTypeDto> getBoardType();
 
-	void insertBoard(BoardDto boardDto);
+	void insertBoard(BoardDto boardDto, MultipartFile file);
 
 	List<BoardDto> getList(PageDto pageDto);
 

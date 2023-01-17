@@ -1,15 +1,19 @@
 package com.vue.back.service.impl;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
 import com.vue.back.dto.BoardGoodBadDto;
 import com.vue.back.dto.BoardModifyDto;
 import com.vue.back.dto.BoardTypeDto;
+import com.vue.back.dto.FileDto;
 import com.vue.back.dto.PageDto;
 import com.vue.back.mapper.BoardMapper;
 import com.vue.back.service.BoardService;
@@ -22,16 +26,33 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	BoardMapper boardMapper;
-
+	
+	@Autowired
+	S3Service s3Service;
+	
 	@Override
 	public List<BoardTypeDto> getBoardType() {
 		return boardMapper.getBoardType();
 	}
 
 	@Override
-	public void insertBoard(BoardDto boardDto) {
+	public void insertBoard(BoardDto boardDto , MultipartFile file) {
 		log.info(">>>insert board check 2");
 		boardMapper.insertBoard(boardDto);
+		String url = "";
+		try {
+			url = s3Service.upload(file, "/board/file/" + boardDto.getUid());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		FileDto fileDto = FileDto.builder()
+				.file_name(file.getOriginalFilename())
+				.file_size(file.getSize())
+				.file_url(url)
+				.mother_uid(boardDto.getUid())
+				.build();
+		// db 에 fileDto 올리기
 	}
 
 	@Override

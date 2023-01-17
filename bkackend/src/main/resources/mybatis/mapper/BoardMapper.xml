@@ -84,7 +84,7 @@
   		uid = #{uid}
   </update>    
   
-  <insert id="insertBoard" parameterType="com.vue.back.dto.BoardDto">
+  <insert id="insertBoard" parameterType="com.vue.back.dto.BoardDto" useGeneratedKeys="true" keyProperty="uid">
   <!-- 그럼 이제 넣기만해면 댐 끝 -->
   	INSERT INTO board(
   		title,
