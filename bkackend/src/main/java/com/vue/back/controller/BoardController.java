@@ -10,7 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
@@ -46,7 +48,7 @@ public class BoardController {
 	}
 
 	@PostMapping(value = "/api/boardSave", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE } )
-	public JSONObject boardSave(@RequestBody BoardDto boardDto, HttpServletRequest request) {
+	public JSONObject boardSave(@RequestBody BoardDto boardDto, @RequestParam(name="file", required = false)MultipartFile[] file, HttpServletRequest request) {
 		log.info(">>>boardSave check 1");
 		
 		JSONObject result = new JSONObject();
