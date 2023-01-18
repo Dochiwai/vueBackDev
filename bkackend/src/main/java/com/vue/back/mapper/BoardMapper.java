@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.vue.back.dto.BoardTypeDto;
+import com.vue.back.dto.FileDto;
 import com.vue.back.dto.PageDto;
 import com.vue.back.dto.BoardDto;
 import com.vue.back.dto.BoardGoodBadCntDto;
@@ -41,4 +42,6 @@ public interface BoardMapper {
 	public BoardDto getMyBoard(BoardDto boardDto);
 
 	public void modifyBoard(BoardModifyDto boardModifyDto);
+	
+	public void insertFile(FileDto fileDto);
 }

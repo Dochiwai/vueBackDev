@@ -40,19 +40,21 @@ public class BoardServiceImpl implements BoardService {
 		log.info(">>>insert board check 2");
 		boardMapper.insertBoard(boardDto);
 		String url = "";
-		try {
-			url = s3Service.upload(file, "/board/file/" + boardDto.getUid());
-		} catch (IOException e) {
-			e.printStackTrace();
+		if(file == null || file.isEmpty()) {
+		}else {
+			try {
+				url = s3Service.upload(file, "/board/file/" + boardDto.getUid()); 
+				FileDto fileDto = FileDto.builder()
+						.file_name(file.getOriginalFilename())
+						.file_size(file.getSize())
+						.file_url(url)
+						.mother_uid(boardDto.getUid())
+						.build();
+				boardMapper.insertFile(fileDto);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
-		FileDto fileDto = FileDto.builder()
-				.file_name(file.getOriginalFilename())
-				.file_size(file.getSize())
-				.file_url(url)
-				.mother_uid(boardDto.getUid())
-				.build();
-		// db 에 fileDto 올리기
 	}
 
 	@Override

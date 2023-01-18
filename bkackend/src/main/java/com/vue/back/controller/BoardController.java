@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,7 +50,7 @@ public class BoardController {
 
 
 	@PostMapping(value = "/api/boardSave")
-	public JSONObject boardSave(BoardDto boardDto, MultipartFile file,HttpServletRequest request) {
+	public JSONObject boardSave(BoardDto boardDto, @RequestPart(value="file", required=false)MultipartFile file, HttpServletRequest request) {
 		log.info(">>>boardSave check 1");
 		JSONObject result = new JSONObject();
 		try {

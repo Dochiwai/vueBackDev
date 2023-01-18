@@ -1,6 +1,7 @@
 package com.vue.back.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -17,5 +18,5 @@ public class BoardDto {
 	private Date updated_at;
 	private int is_del;
 	private int view_cnt;
-	private int page;
+	private String fileUrl;
 }
