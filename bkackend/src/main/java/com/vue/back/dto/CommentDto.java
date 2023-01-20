@@ -12,4 +12,5 @@ public class CommentDto {
 	private String created_user;
 	private Date created_at;
 	private Date updated_at;
+	private int is_del;
 }
