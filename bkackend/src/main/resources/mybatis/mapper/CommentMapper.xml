@@ -15,8 +15,20 @@
   		#{created_user},
   		now()
   	)
-  	
-  	
   </insert>
+  
+  <select id="commentView" parameterType="long" resultType="com.vue.back.dto.CommentDto">
+  	SELECT
+  		uid,
+  		comment,
+  		created_user,
+  		created_at
+  	FROM
+  		comment
+  	WHERE
+  		is_del = 0
+  	AND
+  		mother_uid = #{uid}
+  </select>
   
 </mapper>
