@@ -16,4 +16,5 @@ public class UserDto {
 	private Date updated_at;
 	private int status;
 	private int email_check;
+	private int grade;
 }
