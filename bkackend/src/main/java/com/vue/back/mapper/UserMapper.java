@@ -18,5 +18,7 @@ public interface UserMapper {
 
 	void updateUser(UserUpdateDto user);
 
+	void withdrawalUser(UserDto user);
+
 
 }

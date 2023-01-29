@@ -66,5 +66,15 @@
   	WHERE
   		email = #{email}
   </update>
+  
+  <update id="withdrawalUser" parameterType="com.vue.back.dto.UserDto">
+  	UPDATE
+  		user
+  	SET
+  		status = 1,
+  		updated_at = now()
+  	WHERE
+  		email = #{email}
+  </update>
 
 </mapper>

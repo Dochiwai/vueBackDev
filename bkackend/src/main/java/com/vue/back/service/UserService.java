@@ -13,4 +13,6 @@ public interface UserService {
 
 	void updateUser(UserUpdateDto user) throws Exception;
 
+	void withdrawalUser(UserDto user);
+
 }

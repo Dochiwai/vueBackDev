@@ -100,4 +100,20 @@ public class UserController {
 		return result;
 		
 	}
+	
+	@PostMapping(value = "/api/withdrawal")
+	public JSONObject userWithdrawal(@RequestBody UserDto user, HttpServletRequest request) {
+		JSONObject result = new JSONObject();
+		log.info(">>>check withdrawal 1");
+		log.info(">>> check request user" + user.toString());
+		try {
+			userService.withdrawalUser(user);
+			request.getSession().removeAttribute("user");
+			request.getSession().invalidate();
+			result.put("result", 200);
+		} catch (Exception e) {
+			result.put("result", 500);
+		}
+		return result;
+	}
 }

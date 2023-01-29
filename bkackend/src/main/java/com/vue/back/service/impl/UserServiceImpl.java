@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
 	public boolean signUp(UserDto user) throws Exception {
 		
 		AES256 aes256 = new AES256();
-		log.info(">>>signUp check2");
 		
 		UserDto tmpUser = userMapper.getUser(user.getEmail());
 		if(tmpUser != null) { // 중복된 유저가 있는지 체크
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto isUser(UserDto dto) throws Exception {
-		log.info(">>> login check2");
+
 		
 		AES256 aes256 = new AES256();
 		dto.setPw(aes256.encrypt(dto.getPw()));
@@ -61,17 +60,25 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto getUserInfo(UserDto user) {
-		log.info(">>> getUserInfo check 2");
+
 		return userMapper.getUserInfo(user);
 	}
 
 
 	@Override
 	public void updateUser(UserUpdateDto user) throws Exception {
-		log.info("ChangeUserInfo check 2");
+
 		AES256 aes256 = new AES256();
 		user.setPassword(aes256.encrypt(user.getPassword()));
 		userMapper.updateUser(user);
+	}
+
+
+	@Override
+	public void withdrawalUser(UserDto user) {
+
+		userMapper.withdrawalUser(user);
+		
 	}
 
 }
