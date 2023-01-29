@@ -25,7 +25,6 @@ public class UserController {
 
 	@PostMapping(value = "/api/login")
 	public JSONObject Login(HttpServletRequest request, @RequestBody UserDto dto) throws Exception {
-		log.info(">>>login Check 1");
 		JSONObject result = new JSONObject();
 		if (dto.getEmail() == null || dto.getEmail().equals("") && dto.getPw() == null || dto.getPw().equals("")) {
 			result.put("result", 400);
@@ -46,7 +45,6 @@ public class UserController {
 
 	@PostMapping(value = "/api/signUp")
 	public JSONObject signup(@RequestBody UserDto user) throws Exception {
-		log.info(">>>signUp check 1");
 		boolean isUp = userService.signUp(user);
 		JSONObject result = new JSONObject();
 		if (isUp) {
@@ -60,7 +58,6 @@ public class UserController {
 
 	@PostMapping(value = "/api/logout")
 	public JSONObject logout(HttpServletRequest request) {
-		log.info(">>>logout check 1");
 		JSONObject result = new JSONObject();
 		request.getSession().removeAttribute("user");
 		result.put("result", 200);
@@ -71,7 +68,6 @@ public class UserController {
 	
 	@PostMapping(value = "/api/getUser")
 	public JSONObject getMyInfo(@RequestBody UserDto user) {
-		log.info("getUserInfo check 1");
 		log.info("user: " + user);
 		JSONObject result = new JSONObject();
 		UserDto isUp = userService.getUserInfo(user);
@@ -86,7 +82,6 @@ public class UserController {
 	
 	@PostMapping(value = "/api/mypageSave")
 	public JSONObject userSave(@RequestBody UserUpdateDto user, HttpServletRequest request) throws Exception {
-		log.info("ChangeUserInfo check 1");
 		JSONObject result = new JSONObject();
 		log.info(">> log : " + user.toString());
 		
@@ -104,7 +99,6 @@ public class UserController {
 	@PostMapping(value = "/api/withdrawal")
 	public JSONObject userWithdrawal(@RequestBody UserDto user, HttpServletRequest request) {
 		JSONObject result = new JSONObject();
-		log.info(">>>check withdrawal 1");
 		log.info(">>> check request user" + user.toString());
 		try {
 			userService.withdrawalUser(user);
@@ -114,6 +108,8 @@ public class UserController {
 		} catch (Exception e) {
 			result.put("result", 500);
 		}
+		
 		return result;
+		
 	}
 }

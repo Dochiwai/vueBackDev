@@ -20,5 +20,4 @@ public interface UserMapper {
 
 	void withdrawalUser(UserDto user);
 
-
 }

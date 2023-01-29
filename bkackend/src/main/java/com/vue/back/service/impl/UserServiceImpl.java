@@ -76,7 +76,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void withdrawalUser(UserDto user) {
-
 		userMapper.withdrawalUser(user);
 		
 	}
