@@ -33,8 +33,8 @@
   </select>
   
   <insert id="signUpUser">
-  	INSERT INTO user(email, pw, nickname, name, phone)
-  	VALUES(#{email}, #{pw}, #{nickname}, #{name}, #{phone})
+  	INSERT INTO user(email, pw, nickname, name, phone, grade)
+  	VALUES(#{email}, #{pw}, #{nickname}, #{name}, #{phone}, 1)
   </insert>
   
   <select id="getUserInfo" parameterType="com.vue.back.dto.UserDto" resultType="com.vue.back.dto.UserDto">
